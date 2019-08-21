@@ -4,64 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>GifTastic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-    <script type="text/javascript">
-    
-       $(document).ready(function(){
+    <div class="container">
+        <h2>Anime GifTastic!</h2>
+        <h6>*Click on an Anime title to see some interesting GIFs. *Add your own Anime title. *Double-Click a Button to delete an Anime title</h6>
+           
+        <!-- Div for Buttons  -->
+        <div class = "row">
+            <div class="buttons-view"></div>
+        </div>
+        
+        <div class = "row">
+            <div class="col-lg-9 container-fluid">
+                <!-- Info from API call will be added here -->
+                <div id="anime-view"></div>
+            </div>
+            <!-- Div for the form and submit button-->
+            <div class="col-lg-3">
+                <form id="anime-form">
+                <label for="anime-input">Add an Anime!</label>
+                <input type="text" class="form-control col-12" id="anime-input"><br>
+                <input class="btn btn-warning" id="add-anime" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
 
-           var topics = ["Naruto","Samurai Champloo","Cowboy Bebop","Space Dandy","Kill la Kill","Gurren Lagann","Lupin III"];
-
-           function displayInfo(){
-               $("#animeWorld").empty();
-               var topic = $(this).attr("dataName");
-               var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=ARxKuA4v8BicJ1gly5ExT9Ku7Nx9PTIC&q=anime&limit=10&offset=0&rating=PG-13&lang=en"+topic+"&api_key=ARxKuA4v8BicJ1gly5ExT9Ku7Nx9PTIC";
-
-               $.ajax({
-                   url: queryURL,
-                   method: "GET"
-               })
-
-               .then(function(response){
-                   if (response.pagination.total_count === 0){
-                       alert("Yo what are you looking for?");
-                       var itemindex = topics.indexof(topic);
-                       if (itemindex > -1){
-                           topics.splice(itemindex, 1);
-                           renderButtons();
-                       }
-                   }
-               
-                    var results = response.data;
-                    for(var i = 0; i < results.length; i++){
-                        var newTopicDiv = $("<div class="animeTitle">");
-                        var pRating = $("<p>").text("Rating: "+ result[j].rating.toUpperCase());
-                        var pTitle = $("<p>").text("Rating: "+ result[j].rating.toUpperCase());
-                        var gifURL = result[i].images.fixed_height_still.url;
-                        var gif = $("<img>");
-
-                        gif.attr("src",gifURL);
-                        gif.attr("data-still",results[i].images.fixed_height_still.url;)
-                        gif.attr("data-animated",results[i].imagefixed_height.url);
-                        gif.attr("data-state","still");
-
-                        newTopicDiv.append(pRating);
-                        newTopicDiv.append(pTitle);
-                        newTopicDiv.append(gif);
-
-                        $("#animeWorld").prepend(newTopicDiv);
-                    }
-                });
-           };
-
-           function renderButtons(){
-
-           }
-       } 
-
-    </script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
 </html>

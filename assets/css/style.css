@@ -1,50 +1,47 @@
-$(document).ready(function(){
+body {
+    background-image: url(https://img1.goodfon.com/wallpaper/nbig/0/cd/naruto-konoha-art-masashi.jpg);
+    font-family:'Righteous', cursive;
+    color: white;
+}
 
-    var topics = ["Naruto","Samurai Champloo","Cowboy Bebop","Space Dandy","Kill la Kill","Gurren Lagann","Lupin III"];
+.topic {
+    margin: 10px;
+   }
 
-    function displayInfo(){
-        $("#animeWorld").empty();
-        var topic = $(this).attr("dataName");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=ARxKuA4v8BicJ1gly5ExT9Ku7Nx9PTIC&q=anime&limit=10&offset=0&rating=PG-13&lang=en"+topic+"&api_key=ARxKuA4v8BicJ1gly5ExT9Ku7Nx9PTIC";
+.buttons-view {
+    border-radius: 25px;
+    border: 2px solid wheat;
+    padding: 10px;
+}
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+h2 {
+    letter-spacing: 5px;
+    text-align: center;
+    color:whitesmoke;
+}
 
-        .then(function(response){
-            if (response.pagination.total_count === 0){
-                alert("Yo what are you looking for?");
-                var itemindex = topics.indexof(topic);
-                if (itemindex > -1){
-                    topics.splice(itemindex, 1);
-                    renderButtons();
-                }
-            }
-        
-             var results = response.data;
-             for(var i = 0; i < results.length; i++){
-                 var newTopicDiv = $("<div class="animeTitle">");
-                 var pRating = $("<p>").text("Rating: "+ result[j].rating.toUpperCase());
-                 var pTitle = $("<p>").text("Rating: "+ result[j].rating.toUpperCase());
-                 var gifURL = result[i].images.fixed_height_still.url;
-                 var gif = $("<img>");
+h6 {
+    font-style: italic;
+    color: rgb(240, 255, 244);
+}
 
-                 gif.attr("src",gifURL);
-                 gif.attr("data-still",results[i].images.fixed_height_still.url;)
-                 gif.attr("data-animated",results[i].imagefixed_height.url);
-                 gif.attr("data-state","still");
+.topic {
+    font-size: 16px;
+    font-weight: lighter;
+}
 
-                 newTopicDiv.append(pRating);
-                 newTopicDiv.append(pTitle);
-                 newTopicDiv.append(gif);
+.anime-name{
+    margin: 20px;
+    float: left;
+}
 
-                 $("#animeWorld").prepend(newTopicDiv);
-             }
-         });
-    };
+p {
+    color:papayawhip;
+    margin-top: 20px;
+    line-height: 16px;
+}
 
-    function renderButtons(){
-
-    }
-} 
+img {
+    border-radius: 20px;
+    margin-top: 2px;
+}
